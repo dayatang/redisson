@@ -21,6 +21,7 @@ import java.io.OutputStream;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.redisson.client.codec.BaseCodec;
 import org.redisson.client.handler.State;
 import org.redisson.client.protocol.Decoder;
@@ -168,6 +169,7 @@ public class JsonJacksonCodec extends BaseCodec {
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         objectMapper.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
         objectMapper.addMixIn(Throwable.class, ThrowableMixIn.class);
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     @Override
